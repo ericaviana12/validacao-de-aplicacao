@@ -13,7 +13,7 @@ async function activateAlarm() {
     alarmSound.play()
 
     // Troca a imagem para indicar que o alarme está ativo
-    panicButton.src = 'botao_ativo.jpg'
+    panicButton.src = 'img/botao_ativo.jpg'
 
     try {
         // Solicita o acesso à câmera
@@ -42,7 +42,7 @@ function deactivateAlarm() {
     alarmSound.currentTime = 0
 
     // Restaura a imagem original do botão
-    panicButton.src = 'botao_inicial.png'
+    panicButton.src = 'img/botao_inicial.png'
 
     // Desativa o LED e para o uso da câmera, caso tenha sido ativado
     if (track) {
