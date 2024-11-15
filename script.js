@@ -1,88 +1,77 @@
-// Seleciona a imagem que atua como botão
-const alertButton = document.getElementById("alertButton") // Obtém o elemento com id "alertButton" para ser usado como botão de alerta
+const alertButton = document.getElementById("alertButton")
+let alertaAtivo = false
+const somAlerta = new Audio("sound/alarme.mp3")
 
-// Variáveis de apoio
-let alertaAtivo = false // Estado do alerta sonoro e LED, inicialmente falso
-
-// Pré-carregamento de áudio
-const somAlerta = new Audio("sound/alarme.mp3") // Cria um objeto de áudio com o som do alarme
-
-// Função para ativar o LED e som
-function ativarAlerta() { // Ativa o som e o LED, além de exibir o alerta
-    somAlerta.loop = true // Configura o som para repetir
-    somAlerta.play() // Inicia o som do alarme
-    alertaAtivo = true // Define o estado do alerta como ativo
-    ligarLed() // Chama a função para ligar o LED
+function ativarAlerta() {
+    somAlerta.loop = true
+    somAlerta.play()
+    alertaAtivo = true
+    ligarLed()
+    alertButton.src = "img/botao_ativo.jpg" // Altera a imagem para o estado ativo
 }
 
-// Função para desativar o LED e som
-function desativarAlerta() { // Desativa o som e o LED, além de ocultar o alerta
-    somAlerta.pause() // Pausa o som do alarme
-    somAlerta.currentTime = 0 // Reinicia o som para o início
-    alertaAtivo = false // Define o estado do alerta como inativo
-    desligarLed() // Chama a função para desligar o LED
+function desativarAlerta() {
+    somAlerta.pause()
+    somAlerta.currentTime = 0
+    alertaAtivo = false
+    desligarLed()
+    alertButton.src = "img/botao_inicial.png" // Retorna a imagem ao estado inativo
 }
 
-// Ativar alerta e LED ao pressionar a imagem (botão)
-alertButton.addEventListener("mousedown", (event) => { // Evento para mouse pressionado no botão de alerta
-    event.preventDefault() // Evita o comportamento padrão do evento
-    if (!alertaAtivo) ativarAlerta() // Ativa o alerta se ele estiver inativo
+alertButton.addEventListener("mousedown", (event) => {
+    event.preventDefault()
+    if (!alertaAtivo) ativarAlerta()
 })
 
-// Desativar alerta e LED ao soltar a imagem
-alertButton.addEventListener("mouseup", (event) => { // Evento para mouse solto no botão de alerta
-    event.preventDefault() // Evita o comportamento padrão do evento
-    if (alertaAtivo) desativarAlerta() // Desativa o alerta se ele estiver ativo
+alertButton.addEventListener("mouseup", (event) => {
+    event.preventDefault()
+    if (alertaAtivo) desativarAlerta()
 })
 
-// Eventos para dispositivos touch
-alertButton.addEventListener("touchstart", (event) => { // Evento para toque no botão de alerta
-    event.preventDefault() // Evita o comportamento padrão do evento
-    if (!alertaAtivo) ativarAlerta() // Ativa o alerta se ele estiver inativo
+alertButton.addEventListener("touchstart", (event) => {
+    event.preventDefault()
+    if (!alertaAtivo) ativarAlerta()
 })
 
-alertButton.addEventListener("touchend", (event) => { // Evento para final de toque no botão de alerta
-    event.preventDefault() // Evita o comportamento padrão do evento
-    if (alertaAtivo) desativarAlerta() // Desativa o alerta se ele estiver ativo
+alertButton.addEventListener("touchend", (event) => {
+    event.preventDefault()
+    if (alertaAtivo) desativarAlerta()
 })
 
-// Inicialização do LED
-async function inicializarLed() { // Função assíncrona para configurar o LED do dispositivo
+async function inicializarLed() {
     try {
-        stream = await navigator.mediaDevices.getUserMedia({ // Solicita acesso à câmera
-            video: { facingMode: "environment" } // Usa a câmera traseira (se disponível)
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" }
         })
-        track = stream.getVideoTracks()[0] // Obtém a faixa de vídeo para controle do LED
-        const capabilities = track.getCapabilities() // Obtém as capacidades do dispositivo
-        if (!capabilities.torch) { // Verifica se o dispositivo possui suporte ao LED
-            console.log("LED não suportado no dispositivo.") // Informa se o LED não é suportado
-            return // Sai da função se não houver suporte ao LED
+        track = stream.getVideoTracks()[0]
+        const capabilities = track.getCapabilities()
+        if (!capabilities.torch) {
+            console.log("LED não suportado no dispositivo.")
+            return
         }
     } catch (error) {
-        console.error(`Erro ao inicializar o LED: ${error}`) // Exibe erro caso ocorra ao acessar o LED
+        console.error(`Erro ao inicializar o LED: ${error}`)
     }
 }
 
-// Funções para controlar o LED
-async function ligarLed() { // Função assíncrona para ligar o LED
-    if (track) { // Verifica se a faixa de vídeo está disponível
+async function ligarLed() {
+    if (track) {
         try {
-            await track.applyConstraints({ advanced: [{ torch: true }] }) // Liga o LED aplicando a configuração
+            await track.applyConstraints({ advanced: [{ torch: true }] })
         } catch (error) {
-            console.error(`Erro ao ligar o LED: ${error}`) // Exibe erro caso ocorra ao ligar o LED
+            console.error(`Erro ao ligar o LED: ${error}`)
         }
     }
 }
 
-async function desligarLed() { // Função assíncrona para desligar o LED
-    if (track) { // Verifica se a faixa de vídeo está disponível
+async function desligarLed() {
+    if (track) {
         try {
-            await track.applyConstraints({ advanced: [{ torch: false }] }) // Desliga o LED aplicando a configuração
+            await track.applyConstraints({ advanced: [{ torch: false }] })
         } catch (error) {
-            console.error(`Erro ao desligar o LED: ${error}`) // Exibe erro caso ocorra ao desligar o LED
+            console.error(`Erro ao desligar o LED: ${error}`)
         }
     }
 }
 
-// Inicializar o LED
-inicializarLed() // Chama a função para configurar o LED ao carregar a página
+inicializarLed()
