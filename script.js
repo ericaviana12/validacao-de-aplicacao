@@ -2,7 +2,7 @@
 const panicButton = document.getElementById('panicButton')
 
 // Carrega o som do alarme
-const alarmSound = new Audio('alarme.mp3')
+const alarmSound = new Audio("sound/alarme.mp3")
 
 // Variável para o controle da lanterna
 let track = null
@@ -13,7 +13,7 @@ async function activateAlarm() {
     alarmSound.play()
 
     // Troca a imagem para indicar que o alarme está ativo
-    panicButton.src = 'botao_ativo.png'
+    panicButton.src = 'botao_ativo.jpg'
 
     try {
         // Solicita o acesso à câmera
