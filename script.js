@@ -2,18 +2,18 @@
 const panicButton = document.getElementById('panicButton')
 
 // Carrega o som do alarme
-const somAlerta = new Audio("sound/alarme.mp3")
+const alarmSound = new Audio('alarme.mp3')
 
 // Variável para o controle da lanterna
 let track = null
 
-// Função para ativar o alarme, o LED e trocar a imagem do botão
+// Função para ativar o alarme e o LED
 async function activateAlarm() {
     // Reproduz o som do alarme
     alarmSound.play()
 
     // Troca a imagem para indicar que o alarme está ativo
-    panicButton.src = 'img/botao_ativo.jpg'
+    panicButton.src = 'botao_ativo.jpg'
 
     try {
         // Solicita o acesso à câmera
@@ -23,11 +23,9 @@ async function activateAlarm() {
         track = stream.getVideoTracks()[0]
         
         // Cria um objeto ImageCapture para controlar o LED
-        const imageCapture = new ImageCapture(track)
-        
-        // Verifica se o dispositivo suporta controle do LED e ativa-o
         const capabilities = track.getCapabilities()
         if (capabilities.torch) {
+            // Ativa a lanterna
             track.applyConstraints({ advanced: [{ torch: true }] })
         }
     } catch (error) {
@@ -35,14 +33,14 @@ async function activateAlarm() {
     }
 }
 
-// Função para desativar o alarme, o LED e restaurar a imagem do botão
+// Função para desativar o alarme e o LED
 function deactivateAlarm() {
     // Pausa e reinicia o som do alarme
     alarmSound.pause()
     alarmSound.currentTime = 0
 
     // Restaura a imagem original do botão
-    panicButton.src = 'img/botao_inicial.png'
+    panicButton.src = 'botao_inicial.png'
 
     // Desativa o LED e para o uso da câmera, caso tenha sido ativado
     if (track) {
@@ -50,3 +48,9 @@ function deactivateAlarm() {
         track = null // Limpa a variável de controle do LED
     }
 }
+
+// Eventos para desktop e mobile
+panicButton.addEventListener('mousedown', activateAlarm)
+panicButton.addEventListener('mouseup', deactivateAlarm)
+panicButton.addEventListener('touchstart', activateAlarm)
+panicButton.addEventListener('touchend', deactivateAlarm)
