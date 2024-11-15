@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicativo Botão do Pânico</title>
+</head>
+<body>
+    <!-- Imagem do botão que alterna ao pressionar -->
+    <img 
+        id="panicButton" 
+        src="botao_inicial.png" 
+        alt="Botão do pânico" 
+        onmousedown="activateAlarm()" 
+        onmouseup="deactivateAlarm()" 
+        style="cursor: pointer;"
+    />
+
+    <!-- Inclusão do arquivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
