@@ -2,7 +2,7 @@
 const panicButton = document.getElementById('panicButton')
 
 // Carrega o som do alarme
-const alarmSound = new Audio("sound/alarme.mp3")
+const somAlerta = new Audio("sound/alarme.mp3")
 
 // Variável para o controle da lanterna
 let track = null
