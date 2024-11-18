@@ -2,8 +2,6 @@
 
 Este repositório é dedicado a testes e validação de códigos em HTML5, CSS3 e JavaScript, voltados para criação de sites. O objetivo principal é avaliar o funcionamento de diferentes componentes e funcionalidades em ambientes desktop e mobile. Os projetos aqui servem como experimentos temporários e são atualizados conforme novos testes são necessários.
 
-Atualmente, o repositório contém uma aplicação de botão de pânico, que será substituída por outras aplicações de teste conforme a necessidade.
-
 ## Introdução
 Este repositório serve para validação de aplicações front-end e experimentação com novos componentes e funcionalidades, permitindo ajustes para garantir uma experiência otimizada tanto em desktop quanto em dispositivos móveis.
 
