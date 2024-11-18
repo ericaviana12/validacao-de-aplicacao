@@ -28,7 +28,6 @@ Este repositório serve para validação de aplicações front-end e experimenta
 
 ## Para Visualização em Dispositivos Móveis
 Utilize um emulador de dispositivos móveis ou abra diretamente em um smartphone para validar a responsividade.
-Contribuindo.
 
 ## Como contribuir
 
