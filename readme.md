@@ -1,4 +1,4 @@
-# Validação de Aplicação
+# Validação de aplicação
 
 Este repositório é dedicado a testes e validação de códigos em HTML5, CSS3 e JavaScript, voltados para criação de sites. O objetivo principal é avaliar o funcionamento de diferentes componentes e funcionalidades em ambientes desktop e mobile. Os projetos aqui servem como experimentos temporários e são atualizados conforme novos testes são necessários.
 
@@ -10,12 +10,12 @@ Este repositório serve para validação de aplicações front-end e experimenta
 - Validação de responsividade para múltiplas plataformas.
 - Atualizações constantes para validar diferentes aplicações.
 
-## Tecnologias Utilizadas
+## Tecnologias utilizadas
 - **HTML5**: Estrutura e marcação das páginas.
 - **CSS3**: Estilos e responsividade das aplicações.
 - **JavaScript**: Funcionalidade e interatividade dos componentes.
 
-## Instalação e Execução
+## Instalação e execução
 1. **Clone este repositório**:
    git clone https://github.com/ericaviana12/validacao-de-aplicacao.git
 
@@ -24,7 +24,7 @@ Este repositório serve para validação de aplicações front-end e experimenta
    
 3. Abra o arquivo HTML no navegador para visualizar e testar a aplicação.
 
-## Para Visualização em Dispositivos Móveis
+## Para visualização em dispositivos móveis
 Utilize um emulador de dispositivos móveis ou abra diretamente em um smartphone para validar a responsividade.
 
 ## Como contribuir
